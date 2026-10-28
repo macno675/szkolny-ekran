@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070912">
+<title>Szkolny Ekran – panel</title>
+<link rel="icon" href="logo.svg">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gAccent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b7bff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+  </defs>
+  <symbol id="i-dash" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M3 6h13M3 12h10M3 18h8"/><path d="M16 14.5v6l5-3z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2.5"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h3v3H8z"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+  <symbol id="i-grip" viewBox="0 0 24 24"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.5"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></symbol>
+  <symbol id="i-type" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-disk" viewBox="0 0 24 24"><path d="M22 12H2M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11zM6 16h.01M10 16h.01"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 3l14 9-14 9z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+</svg>
+
+<!-- ============ logowanie ============ -->
+<div id="auth" class="auth" hidden>
+  <div class="auth-art" aria-hidden="true">
+    <svg viewBox="0 0 520 440" class="hero-illu">
+      <defs>
+        <linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b2fb8"/><stop offset=".55" stop-color="#6d5dfc"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+        <linearGradient id="bez" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f45"/><stop offset="1" stop-color="#11141f"/></linearGradient>
+        <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#6d5dfc" stop-opacity=".55"/><stop offset="1" stop-color="#6d5dfc" stop-opacity="0"/></radialGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+      <circle cx="260" cy="200" r="210" fill="url(#glow)"/>
+      <g class="orbit"><circle cx="260" cy="200" r="185" fill="none" stroke="rgba(255,255,255,.08)" stroke-dasharray="3 9"/><circle cx="445" cy="200" r="6" fill="#22d3ee"/></g>
+      <rect x="90" y="80" width="340" height="210" rx="18" fill="url(#bez)" stroke="rgba(255,255,255,.12)"/>
+      <rect x="104" y="94" width="312" height="182" rx="8" fill="url(#scr)"/>
+      <g class="scr-anim">
+        <rect x="128" y="124" width="140" height="18" rx="9" fill="#fff" opacity=".95"/>
+        <rect x="128" y="152" width="200" height="10" rx="5" fill="#fff" opacity=".55"/>
+        <rect x="128" y="170" width="170" height="10" rx="5" fill="#fff" opacity=".4"/>
+        <polygon class="spin-star" points="360,200 368,214 384,214 372,224 376,240 360,231 344,240 348,224 336,214 352,214" fill="#ffd23f"/>
+      </g>
+      <rect x="104" y="252" width="312" height="24" fill="rgba(5,7,15,.7)"/>
+      <rect x="104" y="252" width="44" height="24" fill="#6d5dfc"/>
+      <rect x="160" y="261" width="180" height="6" rx="3" fill="#fff" opacity=".6"/>
+      <path d="M230 290h60l14 34h-88z" fill="#1a1e2e"/><rect x="190" y="322" width="140" height="8" rx="4" fill="#232842"/>
+      <g class="phone">
+        <rect x="390" y="230" width="86" height="150" rx="16" fill="#151927" stroke="rgba(255,255,255,.18)"/>
+        <rect x="398" y="246" width="70" height="118" rx="6" fill="#0d1020"/>
+        <rect x="406" y="258" width="54" height="34" rx="5" fill="url(#scr)"/>
+        <rect x="406" y="300" width="40" height="6" rx="3" fill="#fff" opacity=".5"/>
+        <rect x="406" y="312" width="30" height="6" rx="3" fill="#fff" opacity=".3"/>
+        <rect x="406" y="336" width="54" height="16" rx="8" fill="#6d5dfc"/>
+      </g>
+      <g class="waves" fill="none" stroke="#22d3ee" stroke-linecap="round" stroke-width="3">
+        <path d="M398 214a40 40 0 0 1 30-30" opacity=".9"/><path d="M386 206a56 56 0 0 1 44-44" opacity=".6"/><path d="M374 198a72 72 0 0 1 58-58" opacity=".3"/>
+      </g>
+      <g class="sparkle" fill="#fff"><path d="M70 120l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/><path d="M460 70l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" opacity=".7"/></g>
+    </svg>
+    <h2>Ogłoszenia na korytarzu.<br><span class="grad">Sterowane z każdego miejsca.</span></h2>
+    <p>Wgraj zdjęcie z domu - po chwili jest na telewizorze w szkole.</p>
+  </div>
+  <form class="auth-card" id="authForm">
+    <img src="logo.svg" alt="" class="auth-logo">
+    <h1 id="authTitle">Zaloguj się</h1>
+    <p id="authSub" class="muted">Panel sterowania Szkolnym Ekranem</p>
+    <label class="field"><span>Hasło</span><input type="password" id="pw" autocomplete="current-password" required minlength="8"></label>
+    <label class="field" id="pw2wrap" hidden><span>Powtórz hasło</span><input type="password" id="pw2" autocomplete="new-password" minlength="8"></label>
+    <p class="err" id="authErr" role="alert"></p>
+    <button class="btn primary big" type="submit"><svg><use href="#i-lock"/></svg><span id="authBtn">Zaloguj</span></button>
+  </form>
+</div>
+
+<!-- ============ aplikacja ============ -->
+<div id="app" class="app" hidden>
+  <aside class="side">
+    <div class="brand"><img src="logo.svg" alt=""><div><b id="brandName">Szkolny Ekran</b><small>Panel sterowania</small></div></div>
+    <nav class="nav" aria-label="Sekcje">
+      <button data-view="dash"><svg><use href="#i-dash"/></svg><span>Pulpit</span></button>
+      <button data-view="playlist"><svg><use href="#i-list"/></svg><span>Playlista</span></button>
+      <button data-view="media"><svg><use href="#i-image"/></svg><span>Pliki</span></button>
+      <button data-view="schedule"><svg><use href="#i-cal"/></svg><span>Harmonogram</span></button>
+      <button data-view="settings"><svg><use href="#i-sliders"/></svg><span>Ustawienia</span></button>
+      <a href="help.html" class="navlink"><svg><use href="#i-book"/></svg><span>Instrukcja</span></a>
+    </nav>
+    <div class="side-foot">
+      <div class="live" id="sideLive"><i></i><span>Łączenie…</span></div>
+      <button class="btn ghost sm" id="logout"><svg><use href="#i-logout"/></svg>Wyloguj</button>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="top">
+      <div><h1 id="viewTitle"></h1><p id="viewSub" class="muted"></p></div>
+      <div class="top-actions" id="topActions"></div>
+    </header>
+    <section id="view" class="view"></section>
+  </main>
+</div>
+
+<!-- ============ edytor slajdu ============ -->
+<div id="drawer" class="drawer" hidden>
+  <div class="drawer-bg" data-close></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="edTitle">
+    <header class="drawer-head">
+      <h2 id="edTitle">Nowy slajd</h2>
+      <button class="icon-btn" data-close aria-label="Zamknij"><svg><use href="#i-x"/></svg></button>
+    </header>
+    <div class="drawer-body">
+      <div class="ed-form" id="edForm"></div>
+      <div class="ed-preview">
+        <div class="tv small"><div class="tv-screen"><iframe id="pv" title="Podgląd slajdu" src="about:blank"></iframe></div></div>
+        <p class="muted center">Podgląd na żywo - tak będzie wyglądać na telewizorze</p>
+      </div>
+    </div>
+    <footer class="drawer-foot">
+      <button class="btn ghost" data-close>Anuluj</button>
+      <button class="btn primary" id="edSave"><svg><use href="#i-check"/></svg>Zapisz i wyświetl</button>
+    </footer>
+  </div>
+</div>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<input type="file" id="file" multiple accept="image/*,video/mp4,video/webm,video/quicktime,.svg" hidden>
+<script src="admin.js"></script>
+</body>
+</html>

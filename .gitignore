@@ -1,0 +1,4 @@
+node_modules/
+dist/
+ekran/data/
+.hq/brand/scan.tsv

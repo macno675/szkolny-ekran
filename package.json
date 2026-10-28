@@ -1,0 +1,51 @@
+{
+  "name": "szkolny-ekran",
+  "productName": "Szkolny Ekran",
+  "version": "1.0.0",
+  "description": "Zdalnie sterowany wyświetlacz informacji dla szkoły",
+  "main": "main.js",
+  "author": "Projekt Szkolne Oprogramowanie",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron . --windowed",
+    "kiosk": "electron .",
+    "server": "node server.js",
+    "test": "node --test",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:mac": "electron-builder --mac dmg"
+  },
+  "build": {
+    "appId": "pl.szkola.ekran",
+    "productName": "Szkolny Ekran",
+    "files": [
+      "main.js",
+      "server.js",
+      "lib/**",
+      "public/**",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.png",
+      "category": "public.app-category.productivity"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "runAfterFinish": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0"
+  },
+  "dependencies": {
+    "bonjour-service": "1.4.4"
+  }
+}

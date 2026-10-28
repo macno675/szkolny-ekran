@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Szkolny Ekran – instrukcja</title>
+<link rel="icon" href="logo.svg">
+<link rel="stylesheet" href="admin.css">
+<style>
+  .doc { max-width: 1060px; margin: 0 auto; padding: 28px 16px 80px; }
+  .doc-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 36px; flex-wrap: wrap; }
+  .doc-top .brand { padding: 0; }
+  .doc-hero { text-align: center; margin-bottom: 30px; }
+  .doc-hero h1 { font-size: clamp(30px, 4.6vw, 52px); letter-spacing: -.03em; }
+  .doc-hero p { color: var(--muted); font-size: 17px; margin-top: 12px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 22px 0 44px; }
+  .toc a { padding: 8px 14px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); color: var(--text); text-decoration: none; font-weight: 600; font-size: 13px; }
+  .toc a:hover { border-color: var(--accent); }
+  section { margin-bottom: 56px; scroll-margin-top: 20px; }
+  section > h2 { font-size: 28px; display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  section > h2 .n { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--grad); font-size: 18px; flex: none; }
+  section > p.lead { color: var(--muted); font-size: 15.5px; margin-bottom: 22px; max-width: 760px; }
+  .diagram { width: 100%; height: auto; stroke: none; display: block; }
+  .diagram text { font-family: var(--font); }
+  .steps { counter-reset: s; display: grid; gap: 12px; }
+  .step { display: grid; grid-template-columns: 46px 1fr; gap: 16px; padding: 18px 20px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); }
+  .step::before { counter-increment: s; content: counter(s); width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-weight: 800; font-size: 18px; background: rgba(124,108,255,.16); color: #c4bbff; }
+  .step b { display: block; font-size: 15.5px; margin-bottom: 4px; }
+  .step p, .step li { color: var(--muted); }
+  .step ul { margin: 6px 0 0; padding-left: 18px; }
+  .cmd { position: relative; margin-top: 10px; }
+  .cmd pre { margin: 0; padding: 14px 16px; padding-right: 90px; border-radius: 12px; background: #05060c; border: 1px solid var(--line2); color: #c7d2fe; font-size: 13px; overflow-x: auto; line-height: 1.6; }
+  .cmd button { position: absolute; top: 8px; right: 8px; }
+  kbd { display: inline-block; padding: 2px 8px; border-radius: 7px; background: var(--card2); border: 1px solid var(--line2); border-bottom-width: 3px; font: 600 12.5px var(--font); color: var(--text); }
+  .keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .keys div { padding: 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; color: var(--muted); font-size: 13.5px; }
+  details { border-radius: 14px; background: var(--card); border: 1px solid var(--line); margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 16px 18px; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+  summary::after { content: "+"; color: var(--accent2); font-size: 20px; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details > div { padding: 0 18px 18px; color: var(--muted); }
+  .note { display: flex; gap: 14px; padding: 16px 18px; border-radius: 14px; background: rgba(251,191,36,.07); border: 1px solid rgba(251,191,36,.25); color: #f3e2b0; margin-top: 14px; font-size: 14px; }
+  .note svg { color: var(--warn); margin-top: 2px; }
+  .note.info { background: rgba(34,211,238,.06); border-color: rgba(34,211,238,.22); color: #c3eef7; }
+  .note.info svg { color: var(--accent2); }
+  .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .cards3 .card svg.big { width: 100%; height: auto; stroke: none; margin-bottom: 12px; border-radius: 10px; }
+  .cards3 .card p { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
+  @media (max-width: 820px) { .cards3 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="gAccent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b7bff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+</svg>
+
+<div class="doc">
+  <div class="doc-top">
+    <div class="brand"><img src="logo.svg" alt=""><div><b>Szkolny Ekran</b><small>Instrukcja</small></div></div>
+    <a class="btn" href="./"><svg><use href="#i-back"/></svg>Wróć do panelu</a>
+  </div>
+
+  <div class="doc-hero">
+    <h1>Od pudełka do <span class="grad">działającego ekranu</span></h1>
+    <p>Wszystko, co trzeba zrobić, żeby telewizor na korytarzu sam pokazywał ogłoszenia - i żeby dało się nim sterować z domu.</p>
+  </div>
+  <nav class="toc">
+    <a href="#jak">1. Jak to działa</a><a href="#instalacja">2. Instalacja</a><a href="#windows">3. Windows 24/7</a>
+    <a href="#zdalnie">4. Dostęp z domu</a><a href="#obsluga">5. Codzienna obsługa</a><a href="#skroty">6. Skróty</a><a href="#problemy">7. Problemy</a><a href="#kopie">8. Kopie i aktualizacje</a>
+  </nav>
+
+  <!-- 1 -->
+  <section id="jak">
+    <h2><span class="n">1</span>Jak to działa</h2>
+    <p class="lead">Na szkolnym komputerze działa jeden program. Jednocześnie wyświetla treści na telewizorze i udostępnia panel sterowania. Wszystkie pliki trzyma na dysku tego komputera, więc ekran działa nawet bez internetu.</p>
+    <div class="card" style="padding:18px">
+      <svg class="diagram" viewBox="0 0 1000 380" role="img" aria-label="Schemat: telefon lub laptop w domu łączy się przez Tailscale z komputerem w szkole, który przez nadajnik HDMI wyświetla obraz na telewizorze">
+        <defs>
+          <linearGradient id="dg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b2fb8"/><stop offset=".6" stop-color="#6d5dfc"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#22d3ee"/></marker>
+        </defs>
+        <!-- dom -->
+        <rect x="10" y="40" width="210" height="300" rx="22" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.1)"/>
+        <text x="115" y="72" text-anchor="middle" fill="#8b90b0" font-size="13" font-weight="700" letter-spacing="2">DOM / DOWOLNE MIEJSCE</text>
+        <rect x="40" y="110" width="150" height="96" rx="8" fill="#151927" stroke="rgba(255,255,255,.2)"/>
+        <rect x="48" y="118" width="134" height="80" rx="4" fill="#0b0e1a"/><rect x="56" y="126" width="30" height="64" rx="3" fill="#1c2240"/>
+        <rect x="92" y="126" width="82" height="30" rx="3" fill="url(#dg1)"/><rect x="92" y="162" width="60" height="6" rx="3" fill="#fff" opacity=".4"/><rect x="92" y="174" width="44" height="6" rx="3" fill="#fff" opacity=".25"/>
+        <path d="M28 212h174l-12 10H40z" fill="#232842"/>
+        <rect x="80" y="238" width="58" height="92" rx="12" fill="#151927" stroke="rgba(255,255,255,.2)"/><rect x="86" y="250" width="46" height="68" rx="4" fill="url(#dg1)"/>
+        <text x="115" y="360" text-anchor="middle" fill="#eef0ff" font-size="14" font-weight="700">Panel w przeglądarce</text>
+        <!-- internet -->
+        <path d="M230 190 C 300 190, 320 190, 390 190" stroke="#22d3ee" stroke-width="3" fill="none" stroke-dasharray="8 8" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" from="32" to="0" dur="1s" repeatCount="indefinite"/></path>
+        <g transform="translate(300 120)"><rect x="-58" y="-26" width="116" height="40" rx="20" fill="#0b0e1a" stroke="#22d3ee"/><text x="0" y="0" text-anchor="middle" fill="#22d3ee" font-size="13" font-weight="800">Tailscale</text></g>
+        <text x="310" y="226" text-anchor="middle" fill="#8b90b0" font-size="12">szyfrowany tunel</text>
+        <!-- szkoła -->
+        <rect x="400" y="40" width="590" height="300" rx="22" fill="rgba(124,108,255,.05)" stroke="rgba(124,108,255,.3)"/>
+        <text x="695" y="72" text-anchor="middle" fill="#a99eff" font-size="13" font-weight="700" letter-spacing="2">SZKOŁA</text>
+        <rect x="425" y="95" width="200" height="200" rx="16" fill="#11141f" stroke="rgba(255,255,255,.15)"/>
+        <rect x="445" y="112" width="160" height="12" rx="6" fill="#1c2240"/><circle cx="590" cy="118" r="4" fill="#34d399"/>
+        <rect x="445" y="140" width="160" height="62" rx="10" fill="rgba(124,108,255,.15)" stroke="rgba(124,108,255,.4)"/>
+        <text x="525" y="166" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">Szkolny Ekran</text>
+        <text x="525" y="186" text-anchor="middle" fill="#a99eff" font-size="11">serwer + odtwarzacz</text>
+        <rect x="445" y="212" width="75" height="30" rx="8" fill="#1c2240"/><text x="482" y="232" text-anchor="middle" fill="#c7d2fe" font-size="11">pliki</text>
+        <rect x="530" y="212" width="75" height="30" rx="8" fill="#1c2240"/><text x="567" y="232" text-anchor="middle" fill="#c7d2fe" font-size="11">watchdog</text>
+        <text x="525" y="275" text-anchor="middle" fill="#8b90b0" font-size="12">Komputer z Windows 10</text>
+        <!-- hdmi -->
+        <path d="M630 195 H 690" stroke="#8b7bff" stroke-width="5" stroke-linecap="round"/>
+        <rect x="690" y="178" width="50" height="34" rx="8" fill="#232842" stroke="rgba(255,255,255,.2)"/><text x="715" y="232" text-anchor="middle" fill="#8b90b0" font-size="11">nadajnik</text>
+        <g fill="none" stroke="#8b7bff" stroke-width="2.5" stroke-linecap="round"><path d="M748 182a14 14 0 0 1 0 26" opacity=".9"><animate attributeName="opacity" values=".2;1;.2" dur="1.6s" repeatCount="indefinite"/></path><path d="M758 174a26 26 0 0 1 0 42" opacity=".6"><animate attributeName="opacity" values=".2;1;.2" dur="1.6s" begin=".3s" repeatCount="indefinite"/></path></g>
+        <text x="760" y="160" text-anchor="middle" fill="#8b90b0" font-size="11">HDMI</text>
+        <rect x="770" y="178" width="40" height="34" rx="8" fill="#232842" stroke="rgba(255,255,255,.2)"/><text x="790" y="232" text-anchor="middle" fill="#8b90b0" font-size="11">odbiornik</text>
+        <!-- tv -->
+        <rect x="822" y="110" width="150" height="100" rx="10" fill="#1a1e2e" stroke="rgba(255,255,255,.2)"/>
+        <rect x="830" y="118" width="134" height="76" rx="4" fill="url(#dg1)"/>
+        <rect x="842" y="134" width="64" height="9" rx="4.5" fill="#fff"/><rect x="842" y="150" width="96" height="5" rx="2.5" fill="#fff" opacity=".6"/>
+        <polygon points="940,160 944,168 952,168 946,173 948,181 940,176 932,181 934,173 928,168 936,168" fill="#ffd23f"><animateTransform attributeName="transform" type="rotate" from="0 940 172" to="360 940 172" dur="5s" repeatCount="indefinite"/></polygon>
+        <rect x="830" y="184" width="134" height="10" fill="rgba(0,0,0,.5)"/>
+        <path d="M880 210h34l6 16h-46z" fill="#232842"/>
+        <text x="897" y="255" text-anchor="middle" fill="#eef0ff" font-size="14" font-weight="700">Telewizor na korytarzu</text>
+      </svg>
+    </div>
+    <div class="cards3" style="margin-top:14px">
+      <div class="card"><svg class="big" viewBox="0 0 200 90"><rect width="200" height="90" fill="#1c2240"/><rect x="20" y="20" width="70" height="50" rx="6" fill="url(#gAccent)"/><path d="M100 45h30" stroke="#22d3ee" stroke-width="3" stroke-dasharray="5 5"/><rect x="140" y="25" width="40" height="40" rx="8" fill="#34d399"/><path d="M151 45l6 6 12-12" stroke="#062" stroke-width="4" fill="none" stroke-linecap="round"/></svg><h3>Działa bez internetu</h3><p>Pliki są na dysku komputera. Jeśli sieć padnie, ekran dalej pokazuje ostatnią playlistę.</p></div>
+      <div class="card"><svg class="big" viewBox="0 0 200 90"><rect width="200" height="90" fill="#1c2240"/><circle cx="100" cy="45" r="28" fill="none" stroke="url(#gAccent)" stroke-width="6" stroke-dasharray="120 60"><animateTransform attributeName="transform" type="rotate" from="0 100 45" to="360 100 45" dur="3s" repeatCount="indefinite"/></circle><path d="M92 45l6 6 12-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></svg><h3>Sam się naprawia</h3><p>Watchdog co 15 s sprawdza odtwarzacz i w razie potrzeby go odświeża. Po awarii program sam się restartuje, a po zaniku prądu startuje z Windowsem.</p></div>
+      <div class="card"><svg class="big" viewBox="0 0 200 90"><rect width="200" height="90" fill="#000"/><text x="100" y="52" text-anchor="middle" fill="#fff" opacity=".25" font-size="16" font-weight="800" font-family="sans-serif">LOGO<animate attributeName="x" values="100;70;130;100" dur="8s" repeatCount="indefinite"/></text></svg><h3>Tryb nocny</h3><p>Poza lekcjami ekran jest czarny, z przygaszonym logo, które co minutę zmienia miejsce. Telewizor się nie wypala i nie gubi sygnału.</p></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="instalacja">
+    <h2><span class="n">2</span>Instalacja na komputerze szkolnym (Windows 10)</h2>
+    <p class="lead">Zajmie ok. 15 minut. Potrzebujesz pliku <b>Szkolny Ekran Setup 1.0.0.exe</b> (np. na pendrivie) i dostępu do konta administratora.</p>
+    <div class="steps">
+      <div class="step"><div><b>Podłącz nadajnik HDMI i włącz telewizor</b><p>Ustaw w telewizorze właściwe wejście HDMI. Jeśli komputer ma też monitor, program pozwoli wybrać wyjście w <i>Ustawienia → Ekran i komputer</i>.</p></div></div>
+      <div class="step"><div><b>Uruchom instalator</b><p>Kliknij dwukrotnie <b>Szkolny Ekran Setup 1.0.0.exe</b>. Windows może pokazać ostrzeżenie „System Windows ochronił ten komputer”, bo program nie ma płatnego podpisu cyfrowego. Kliknij <b>Więcej informacji → Uruchom mimo to</b>.</p></div></div>
+      <div class="step"><div><b>Przejdź kreator i zostaw „Uruchom Szkolny Ekran”</b><p>Program otworzy się na pełnym ekranie. Od teraz będzie startował sam po każdym uruchomieniu Windowsa.</p></div></div>
+      <div class="step"><div><b>Zezwól na dostęp w zaporze</b><p>Gdy Windows zapyta o zaporę, zaznacz <b>sieci prywatne</b> i kliknij <b>Zezwalaj na dostęp</b>. Jeśli okno się nie pojawi albo panel nie otwiera się z innego komputera, uruchom w <i>Wierszu polecenia jako administrator</i>:</p>
+        <div class="cmd"><pre>netsh advfirewall firewall add rule name="Szkolny Ekran" dir=in action=allow protocol=TCP localport=8080</pre><button class="btn sm" data-copy>Kopiuj</button></div></div></div>
+      <div class="step"><div><b>Ustaw hasło administratora</b><p>Na tym komputerze naciśnij <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> - otworzy się panel w przeglądarce (albo wpisz <code>http://localhost:8080</code>). Przy pierwszym wejściu ustawisz hasło (min. 8 znaków; najlepiej 3-4 losowe słowa).</p></div></div>
+      <div class="step"><div><b>Dodaj logo i pierwsze ogłoszenie</b><p><i>Pliki</i> → wgraj logo (PNG z przezroczystym tłem) → gwiazdka „ustaw jako logo”. Potem <i>Nowy slajd</i>. Gotowe - telewizor już to pokazuje.</p></div></div>
+      <div class="step"><div><b>Sprawdź godziny w Harmonogramie</b><p>Domyślnie pon.–pt. 7:30–16:00. Poza tymi godzinami włącza się tryb nocny.</p></div></div>
+    </div>
+    <div class="note info"><svg><use href="#i-info"/></svg><div>Chcesz najpierw przetestować na Macu albo innym komputerze? W folderze projektu uruchom <code>npm install</code>, a potem <code>npm start</code> (tryb w oknie) - wszystko działa tak samo.</div></div>
+  </section>
+
+  <!-- 3 -->
+  <section id="windows">
+    <h2><span class="n">3</span>Windows do pracy 24/7</h2>
+    <p class="lead">Te ustawienia robi się raz. Dzięki nim komputer nie zaśnie, nie pokaże okienek na telewizorze i sam wróci do pracy po zaniku prądu.</p>
+    <div class="steps">
+      <div class="step"><div><b>Wyłącz usypianie i wygaszanie</b><p>Wiersz polecenia jako administrator:</p>
+        <div class="cmd"><pre>powercfg /change monitor-timeout-ac 0
+powercfg /change standby-timeout-ac 0
+powercfg /change hibernate-timeout-ac 0
+powercfg /hibernate off</pre><button class="btn sm" data-copy>Kopiuj</button></div>
+        <p style="margin-top:8px">Wygaszacz ekranu: <i>Ustawienia → Personalizacja → Ekran blokady → Ustawienia wygaszacza ekranu → (Brak)</i>.</p></div></div>
+      <div class="step"><div><b>Automatyczne logowanie</b><p>Po restarcie Windows ma sam wejść na pulpit, bez hasła. Najprościej użyć darmowego narzędzia Microsoftu <b>Autologon</b> (Sysinternals, strona learn.microsoft.com). Uruchom, wpisz login i hasło konta, kliknij <b>Enable</b>.</p>
+        <ul><li>Najlepiej osobne, zwykłe konto lokalne (np. <code>ekran</code>), bez uprawnień administratora.</li><li>Program instalujesz, będąc zalogowanym na tym koncie.</li></ul></div></div>
+      <div class="step"><div><b>Start po zaniku prądu</b><p>W BIOS/UEFI (klawisz <kbd>Del</kbd> albo <kbd>F2</kbd> przy starcie) znajdź opcję <i>Restore on AC Power Loss</i> / <i>After Power Failure</i> i ustaw <b>Power On</b>.</p></div></div>
+      <div class="step"><div><b>Windows Update tylko w nocy</b><p><i>Ustawienia → Aktualizacje i zabezpieczenia → Zmień godziny aktywnej pracy</i>: 6:00–22:00. Restart po aktualizacji nastąpi w nocy, a autologowanie i autostart przywrócą ekran.</p></div></div>
+      <div class="step"><div><b>Bez powiadomień na ekranie</b><p><i>Ustawienia → System → Asystent koncentracji → Tylko alarmy</i>. Wyłącz też <i>Powiadomienia</i> i „porady oraz sugestie”.</p></div></div>
+      <div class="step"><div><b>Telewizor</b><p>W menu TV wyłącz: automatyczne wyłączanie po X godzinach, tryb oszczędny „brak sygnału”, autodetekcję źródła. Ustaw „po włączeniu: ostatnie źródło”.</p></div></div>
+    </div>
+    <div class="note"><svg><use href="#i-warn"/></svg><div><b>Windows 10 nie dostaje już poprawek bezpieczeństwa</b> (koniec wsparcia: 14 października 2025). Komputer jest w sieci cały czas, więc: używaj go tylko do ekranu, nie loguj się na nim do poczty ani e-dziennika, trzymaj włączonego Windows Defendera. Rozważ płatny program ESU albo przejście na Windows 11, jeśli sprzęt na to pozwala.</div></div>
+  </section>
+
+  <!-- 4 -->
+  <section id="zdalnie">
+    <h2><span class="n">4</span>Dostęp z domu - Tailscale</h2>
+    <p class="lead">Tailscale tworzy prywatną, szyfrowaną sieć tylko między Twoimi urządzeniami. W szkole nie trzeba otwierać żadnych portów ani prosić administratora sieci o zmiany. Darmowy plan wystarcza.</p>
+    <div class="card" style="padding:18px;margin-bottom:14px">
+      <svg class="diagram" viewBox="0 0 1000 200" role="img" aria-label="Telefon, laptop i komputer szkolny połączone w jedną prywatną sieć Tailscale">
+        <rect x="300" y="20" width="400" height="160" rx="80" fill="rgba(34,211,238,.06)" stroke="#22d3ee" stroke-dasharray="6 8"/>
+        <text x="500" y="52" text-anchor="middle" fill="#22d3ee" font-size="13" font-weight="800" letter-spacing="2">TWOJA SIEĆ TAILSCALE</text>
+        <g><rect x="120" y="70" width="44" height="76" rx="9" fill="#151927" stroke="rgba(255,255,255,.25)"/><rect x="125" y="80" width="34" height="54" rx="3" fill="url(#gAccent)"/><text x="142" y="172" text-anchor="middle" fill="#eef0ff" font-size="13" font-weight="700">Telefon</text></g>
+        <g><rect x="420" y="80" width="110" height="64" rx="8" fill="#11141f" stroke="rgba(255,255,255,.25)"/><circle cx="515" cy="92" r="4" fill="#34d399"/><text x="475" y="118" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">ekran-korytarz</text><text x="475" y="134" text-anchor="middle" fill="#8b90b0" font-size="10">100.x.y.z:8080</text></g>
+        <g><rect x="820" y="80" width="90" height="56" rx="6" fill="#151927" stroke="rgba(255,255,255,.25)"/><rect x="826" y="86" width="78" height="44" rx="3" fill="url(#gAccent)"/><path d="M808 140h114l-8 8H816z" fill="#232842"/><text x="865" y="172" text-anchor="middle" fill="#eef0ff" font-size="13" font-weight="700">Laptop w domu</text></g>
+        <path d="M168 108 H 415" stroke="#22d3ee" stroke-width="2.5" stroke-dasharray="7 7"><animate attributeName="stroke-dashoffset" from="28" to="0" dur="1s" repeatCount="indefinite"/></path>
+        <path d="M815 108 H 535" stroke="#22d3ee" stroke-width="2.5" stroke-dasharray="7 7"><animate attributeName="stroke-dashoffset" from="28" to="0" dur="1s" repeatCount="indefinite"/></path>
+        <g transform="translate(285 96)"><rect width="34" height="24" rx="6" fill="#0b0e1a" stroke="#22d3ee"/><path d="M11 11V8a6 6 0 0 1 12 0v3" stroke="#22d3ee" stroke-width="2" fill="none" transform="translate(0 -6)"/><rect x="9" y="9" width="16" height="10" rx="2" fill="#22d3ee"/></g>
+        <g transform="translate(680 96)"><rect width="34" height="24" rx="6" fill="#0b0e1a" stroke="#22d3ee"/><rect x="9" y="9" width="16" height="10" rx="2" fill="#22d3ee"/><path d="M11 5a6 6 0 0 1 12 0v4" stroke="#22d3ee" stroke-width="2" fill="none"/></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><div><b>Załóż konto</b><p>Wejdź na <b>tailscale.com</b> i zaloguj się kontem Google, Microsoft albo Apple (najlepiej szkolnym).</p></div></div>
+      <div class="step"><div><b>Zainstaluj Tailscale na komputerze szkolnym</b><p>Pobierz wersję dla Windows z <b>tailscale.com/download</b>, zainstaluj i zaloguj się tym samym kontem. W menu ikony Tailscale (przy zegarze) włącz <b>Run unattended</b> - wtedy połączenie działa nawet przed zalogowaniem do Windowsa.</p></div></div>
+      <div class="step"><div><b>Wyłącz wygasanie klucza</b><p>W panelu <b>login.tailscale.com → Machines</b> przy komputerze szkolnym kliknij <b>⋯ → Disable key expiry</b>. Bez tego za ok. 6 miesięcy trzeba by się zalogować ponownie.</p></div></div>
+      <div class="step"><div><b>Zainstaluj Tailscale na swoim telefonie lub laptopie</b><p>Z App Store, Google Play albo tailscale.com. Zaloguj się tym samym kontem.</p></div></div>
+      <div class="step"><div><b>Otwórz panel z domu</b><p>W przeglądarce wpisz <code>http://NAZWA-KOMPUTERA:8080</code> (nazwa z listy Machines) albo adres 100.x.y.z z tej listy. Dodaj stronę do ekranu głównego telefonu - działa jak aplikacja.</p></div></div>
+    </div>
+    <div class="note info"><svg><use href="#i-info"/></svg><div>Inne osoby (np. sekretariat) mogą dostać dostęp: w panelu Tailscale <i>Share</i> udostępnia im tylko ten jeden komputer. Hasło do panelu nadal obowiązuje.</div></div>
+  </section>
+
+  <!-- 5 -->
+  <section id="obsluga">
+    <h2><span class="n">5</span>Codzienna obsługa</h2>
+    <p class="lead">Każda zmiana pojawia się na telewizorze w ciągu 1-2 sekund.</p>
+    <div class="cards3">
+      <div class="card"><svg class="big" viewBox="0 0 200 90"><rect width="200" height="90" fill="#1c2240"/><rect x="30" y="18" width="80" height="54" rx="6" fill="#2b3566"/><circle cx="92" cy="32" r="6" fill="#ffd23f"/><path d="M30 72l26-24 16 14 12-10 26 20z" fill="#6d5dfc"/><circle cx="150" cy="45" r="22" fill="url(#gAccent)"/><path d="M150 56V36M142 44l8-8 8 8" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg><h3>Zdjęcie na ekran</h3><p>Pulpit → <b>Wgraj zdjęcie na ekran</b>. Plik od razu trafia na koniec playlisty. Z telefonu działa tak samo.</p></div>
+      <div class="card"><svg class="big" viewBox="0 0 200 90"><rect width="200" height="90" fill="url(#gAccent)"/><rect x="24" y="24" width="96" height="12" rx="6" fill="#fff"/><rect x="24" y="44" width="140" height="7" rx="3.5" fill="#fff" opacity=".6"/><rect x="24" y="58" width="110" height="7" rx="3.5" fill="#fff" opacity=".45"/><text x="160" y="38" font-size="22">📢</text></svg><h3>Ogłoszenie</h3><p>Nowy slajd → <b>Ogłoszenie</b>. Wpisz tytuł i opis, wybierz kolory i ikonę. Ustaw daty, a po ostatniej ogłoszenie samo zniknie.</p></div>
+      <div class="card"><svg class="big" viewBox="0 0 200 90"><rect width="200" height="90" fill="#2a0b1c"/><g fill="#7a1e3a"><path d="M100 45 60 0h16zM100 45 140 0h16zM100 45l100 10v14zM100 45 0 70V56zM100 45l-20 45h16zM100 45l40 45h-14z"/></g><circle cx="140" cy="45" r="22" fill="#ffc94a"><animate attributeName="r" values="22;25;22" dur="1.6s" repeatCount="indefinite"/></circle><text x="140" y="50" text-anchor="middle" font-size="13" font-weight="900" fill="#2a0b1c" font-family="sans-serif">8 zł</text><rect x="20" y="34" width="70" height="10" rx="3" fill="#fff"/><rect x="20" y="50" width="50" height="10" rx="3" fill="#fff"/></svg><h3>Animacje w pętli</h3><p>Nowy slajd → <b>Animacja</b>: promocja w stylu menu restauracji, odliczanie do wydarzenia, lista/menu, zegar powitalny, przewijane napisy.</p></div>
+    </div>
+    <div class="steps" style="margin-top:14px">
+      <div class="step"><div><b>Kolejność i czas</b><p>W <i>Playliście</i> przeciągnij slajdy albo użyj strzałek. Czas ustawiasz w edytorze (3 s – 2 min). Jeden slajd na liście = wyświetla się bez przerwy, a jego animacja się zapętla.</p></div></div>
+      <div class="step"><div><b>Wyłączanie bez usuwania</b><p>Przełącznik przy slajdzie chowa go z ekranu, ale zostaje na liście na przyszłość.</p></div></div>
+      <div class="step"><div><b>Wymuszenie trybu</b><p>Na pulpicie: <i>Automatyczny</i> (wg harmonogramu), <i>Zawsze treści</i> (np. dzień otwarty w sobotę), <i>Tryb nocny</i> (np. ferie).</p></div></div>
+      <div class="step"><div><b>Pasek informacyjny</b><p><i>Ustawienia → Pasek informacyjny</i>: krótkie komunikaty przewijane na dole przez cały czas, na każdym slajdzie.</p></div></div>
+      <div class="step"><div><b>Najlepsze pliki</b><p>Zdjęcia i grafiki 1920×1080 (poziomo). Filmy MP4 (H.264), bez dźwięku. Grafiki z Canvy eksportuj jako PNG w rozmiarze „Prezentacja 16:9”.</p></div></div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="skroty">
+    <h2><span class="n">6</span>Skróty na komputerze szkolnym</h2>
+    <p class="lead">Klawiatura podłączona do komputera z ekranem:</p>
+    <div class="keys">
+      <div><span><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd></span>Otwiera panel w przeglądarce</div>
+      <div><span><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd></span>Zamyka program (np. do serwisu). Wróci po restarcie Windowsa albo po kliknięciu ikony.</div>
+      <div><span><kbd>F5</kbd></span>Odświeża odtwarzacz</div>
+      <div><span><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd></span>Narzędzia diagnostyczne (dla informatyka)</div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="problemy">
+    <h2><span class="n">7</span>Rozwiązywanie problemów</h2>
+    <details><summary>Telewizor jest czarny</summary><div>Sprawdź na pulpicie panelu, czy to nie <b>tryb nocny</b> (godziny w Harmonogramie). Jeśli status to „Ekran nie odpowiada”: sprawdź zasilanie nadajnika i odbiornika HDMI oraz wejście w telewizorze. Kliknij „Odśwież ekran”. Jeśli dalej nic - uruchom komputer ponownie.</div></details>
+    <details><summary>Panel nie otwiera się z domu</summary><div>Na telefonie lub laptopie Tailscale musi być włączony (zielona ikona). W login.tailscale.com sprawdź, czy komputer szkolny jest „Connected”. Jeśli jest offline: w szkole mógł paść internet albo komputer jest wyłączony. Ekran i tak działa dalej na ostatniej playliście.</div></details>
+    <details><summary>Panel nie otwiera się z innego komputera w szkole</summary><div>Wpisz <code>http://NAZWA-KOMPUTERA.local:8080</code> (Bonjour; działa na Macu, iPhonie i nowszym Windows 10) albo adres z kafelka „Dostęp do panelu” na pulpicie (np. <code>http://192.168.1.50:8080</code>). Na Macu listę komputerów z panelem pokaże <code>dns-sd -B _http._tcp</code>. Jeśli nie działa, dodaj regułę zapory z kroku 2.4. Niektóre szkolne sieci Wi-Fi blokują połączenia między urządzeniami - wtedy użyj Tailscale.</div></details>
+    <details><summary>Zapomniałem hasła</summary><div>Na komputerze szkolnym naciśnij <kbd>Win</kbd>+<kbd>R</kbd>, wpisz <code>%APPDATA%\Szkolny Ekran\data</code> i Enter. W tym folderze utwórz pusty plik o nazwie <code>reset-hasla</code> (prawy przycisk → Nowy → Dokument tekstowy, potem usuń końcówkę .txt). Uruchom komputer ponownie - panel poprosi o nowe hasło. Treści zostaną.</div></details>
+    <details><summary>Film się nie odtwarza</summary><div>Najpewniejszy jest MP4 z kodekiem H.264. Pliki z iPhone'a (HEVC/MOV) przekonwertuj, np. w darmowym HandBrake (preset „Fast 1080p30”). Jeśli plik się nie wczyta, ekran go pominie i pokaże następny slajd.</div></details>
+    <details><summary>Animacje się przycinają</summary><div>Słabsza karta graficzna może nie nadążać. Wybieraj przejścia „Przenikanie” albo „Przesunięcie” zamiast „Rozmycia” i „Obrotu 3D”. Na komputerze nie uruchamiaj nic innego.</div></details>
+    <details><summary>Na telewizorze pojawiło się okienko Windowsa</summary><div>Kliknij je myszką albo naciśnij <kbd>F5</kbd>. Na stałe: wyłącz powiadomienia (sekcja 3). Program sam wraca na pierwszy plan po odświeżeniu.</div></details>
+    <details><summary>Gdzie jest dziennik zdarzeń?</summary><div>W panelu: <i>Ustawienia → Pokaż dziennik</i>. Na dysku: <code>%APPDATA%\Szkolny Ekran\ekran.log</code>.</div></details>
+  </section>
+
+  <!-- 8 -->
+  <section id="kopie">
+    <h2><span class="n">8</span>Kopie zapasowe i aktualizacje</h2>
+    <div class="steps">
+      <div class="step"><div><b>Kopia zapasowa</b><p>Wszystko (ustawienia, playlista, pliki) jest w jednym folderze: <code>%APPDATA%\Szkolny Ekran\data</code>. Raz w miesiącu skopiuj go na pendrive albo dysk w chmurze. Przy każdym zapisie program sam robi kopię <code>data.json.bak</code>.</p></div></div>
+      <div class="step"><div><b>Przeniesienie na nowy komputer</b><p>Zainstaluj program, zamknij go (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>), wklej skopiowany folder <code>data</code> w to samo miejsce i uruchom ponownie.</p></div></div>
+      <div class="step"><div><b>Aktualizacja programu</b><p>Zamknij program i uruchom nowszy instalator. Dane zostaną.</p></div></div>
+    </div>
+  </section>
+</div>
+<script>
+  document.addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-copy]'); if (!b) return;
+    try { await navigator.clipboard.writeText(b.previousElementSibling.textContent); b.textContent = 'Skopiowano'; }
+    catch { b.textContent = 'Zaznacz i skopiuj'; }
+    setTimeout(() => { b.textContent = 'Kopiuj'; }, 1800);
+  });
+</script>
+</body>
+</html>
